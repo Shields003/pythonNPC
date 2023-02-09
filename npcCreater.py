@@ -14,31 +14,10 @@ import getAlignment
 import getBackground
 import getSkills
 import getEquipment
+import getClass
+import getRace
 
 
-urlClasses = "https://www.dnd5eapi.co/api/classes"
-
-response = requests.get(urlClasses)
-
-if response.status_code == 200:
-    data = response.json()
-    classes = data["results"]
-    selected_class = random.choice(classes)
-#     print(selected_class["name"])
-else:
-    print("Failed to retrieve data")
-
-urlRaces = "https://www.dnd5eapi.co/api/races"
-
-response = requests.get(urlRaces)
-
-if response.status_code == 200:
-    data = response.json()
-    race = data["results"]
-    selected_race = random.choice(race)
-else:
-    print("Failed to retrieve data")
-    
 urlWeapons = "https://www.dnd5eapi.co/api/equipment-categories/weapon"
 
 response = requests.get(urlWeapons)
@@ -58,37 +37,15 @@ if "Weapon" in selected_weapon["name"]:
 
 if "Weapon" in selected_weapon2["name"]:
     selected_weapon2 = random.choice(weapons)
-    
-    
-#This gets the damage dice for the weapon.
-# urlDamage = "https://www.dnd5eapi.co/api/equipment/"
-# response = requests.get(urlDamage)
-
-# if response.status_code == 200:
-#     data = response.json()
-#     damage_dice = data["equipment"]
-    
-# else:
-#     print("Request failed with status code:", response.status_code)    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 
 print("-------------------------------")
 print("Dungeons & Dragons Random NPC Generator!")
 print("-------------------------------")
-# print('Name:        ', name)
 
 # Race, Gender, Height, weight and bonuses
-classes = (selected_class["name"])
-race = (selected_race["name"])
+classes = (getClass.selected_class["name"])
+race = (getRace.selected_race["name"])
 age = (random.randint(1, 10))
 male = 0
 female = 0
@@ -134,7 +91,19 @@ if race == ["dwarf"]:
 
 # Generate 3d6 stats and add any race/class bonuses
 # Strength
-strength = (random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6))
+str_dice_rolls = [random.randint(1, 6) for _ in range(4)]
+dex_dice_rolls = [random.randint(1, 6) for _ in range(4)]
+wis_dice_rolls = [random.randint(1, 6) for _ in range(4)]
+con_dice_rolls = [random.randint(1, 6) for _ in range(4)]
+int_dice_rolls = [random.randint(1, 6) for _ in range(4)]
+cha_dice_rolls = [random.randint(1, 6) for _ in range(4)]
+
+str_dice_rolls.remove(min(str_dice_rolls))
+int_dice_rolls.remove(min(int_dice_rolls))
+strength = sum(str_dice_rolls)
+
+
+# strength = (random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6)).remove(min)
 if race == ['dwarf']:
     strength = strength + 1
 elif race == ['highelf']:
@@ -149,8 +118,7 @@ elif classes == ["Paladin"]:
 
 
 # Intelligence
-intelligence = (random.randint(1, 6)) + \
-    (random.randint(1, 6))+(random.randint(1, 6))
+intelligence = sum(int_dice_rolls)
 if race == ['halfogre']:
     intelligence = intelligence - 2
 elif race == ['human']:
@@ -239,10 +207,11 @@ level = random.randint(1, 20)
 # Start in print out stats
 # Race
 
-print("Race:        ", selected_race["name"])
+# print("Race:        ", selected_race["name"])
+print("Race:        ", getRace.selected_race["name"])
 
 # Classes
-print("Class:       ", selected_class["name"])
+print("Class:       ", getClass.selected_class["name"])
 
 # Discription Level and age, print
 eyecolors = ['Brown  ', 'Hazel  ', 'Blue   ', 'Grey   ',
@@ -447,12 +416,11 @@ print("Off-Hand Weapon: ", selected_weapon2["name"])
 
 print("-------------------------------")
 print("-------------------------------")
-# print("Spells:", getSpells.spellBook)
 print("Spells:", getSpells.printSpells())
 print("-------------------------------")
 
 print(getSkills.printSkills())
 print("-------------------------------")
-#prints out the equipment from the getEquipment.py module
+# prints out the equipment from the getEquipment.py module
 print("-------------------------------")
 print("Equipment: ", getEquipment.printEquipment())

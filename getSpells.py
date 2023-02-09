@@ -4,7 +4,6 @@ import random
 
 # If the class is a spellcaster, this will randomly select a spell from the D&D 5e API.  The number of spells depends on the level of the spellcaster.
 
-
 urlSpells = "https://www.dnd5eapi.co/api/spells"
 response = requests.get(urlSpells)
 data = response.json()
@@ -14,7 +13,7 @@ selected_spells2 = random.choice(spells)
 selected_spells3 = random.choice(spells)
 selected_spells4 = random.choice(spells)
 selected_spells5 = random.choice(spells)
-level = random.randint(1, 20)
+level = random.randint(0, 19)
 
 spellBook = []
 
@@ -38,13 +37,10 @@ elif level >= 17 and level <= 20:
     spellBook.append(selected_spells3["name"])
     spellBook.append(selected_spells4["name"])
     spellBook.append(selected_spells5["name"])
-    
 
 spellNames = [name for name in spellBook]
 
+
 def printSpells():
-    for spell in spellNames:
-        print(spell)
-        
-    
-# this function will dynamically add the spell to the character's spell list based on the class and level of the character.
+    for name in spellNames:
+        print(name)
