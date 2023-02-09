@@ -13,6 +13,7 @@ import getSpells
 import getAlignment
 import getBackground
 import getSkills
+import getEquipment
 
 
 urlClasses = "https://www.dnd5eapi.co/api/classes"
@@ -446,7 +447,12 @@ print("Off-Hand Weapon: ", selected_weapon2["name"])
 
 print("-------------------------------")
 print("-------------------------------")
-print("Spells:", getSpells.spellBook)
+# print("Spells:", getSpells.spellBook)
+print("Spells:", getSpells.printSpells())
 print("-------------------------------")
-print("Skills: ", getSkills.skillList)
-print(getSkills.skillNames)
+
+print(getSkills.printSkills())
+print("-------------------------------")
+#prints out the equipment from the getEquipment.py module
+print("-------------------------------")
+print("Equipment: ", getEquipment.printEquipment())

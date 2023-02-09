@@ -40,6 +40,11 @@ elif level >= 17 and level <= 20:
     spellBook.append(selected_spells5["name"])
     
 
+spellNames = [name for name in spellBook]
 
+def printSpells():
+    for spell in spellNames:
+        print(spell)
+        
     
 # this function will dynamically add the spell to the character's spell list based on the class and level of the character.

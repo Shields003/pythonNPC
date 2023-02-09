@@ -22,40 +22,49 @@ level = random.randint(1, 20)
 skillList = []
 
 if level >= 1 and level <= 4:
-   skillList.append(selected_skill1["name"])
-   skillList.append(selected_skill2["name"])
+    skillList.append(selected_skill1["name"])
+    skillList.append(selected_skill2["name"])
 elif level >= 5 and level <= 8:
-     skillList.append(selected_skill1["name"])
-     skillList.append(selected_skill2["name"])
-     skillList.append(selected_skill3["name"])
-     skillList.append(selected_skill4["name"])
+    skillList.append(selected_skill1["name"])
+    skillList.append(selected_skill2["name"])
+    skillList.append(selected_skill3["name"])
+    skillList.append(selected_skill4["name"])
 elif level >= 9 and level <= 12:
-     skillList.append(selected_skill1["name"])
-     skillList.append(selected_skill2["name"])
-     skillList.append(selected_skill3["name"])
-     skillList.append(selected_skill4["name"])
-     skillList.append(selected_skill5["name"])
-     skillList.append(selected_skill6["name"])
+    skillList.append(selected_skill1["name"])
+    skillList.append(selected_skill2["name"])
+    skillList.append(selected_skill3["name"])
+    skillList.append(selected_skill4["name"])
+    skillList.append(selected_skill5["name"])
+    skillList.append(selected_skill6["name"])
 elif level >= 13 and level <= 16:
-     skillList.append(selected_skill1["name"])
-     skillList.append(selected_skill2["name"])
-     skillList.append(selected_skill3["name"])
-     skillList.append(selected_skill4["name"])
-     skillList.append(selected_skill5["name"])
-     skillList.append(selected_skill6["name"])
-     skillList.append(selected_skill7["name"])
-     skillList.append(selected_skill8["name"])
+    skillList.append(selected_skill1["name"])
+    skillList.append(selected_skill2["name"])
+    skillList.append(selected_skill3["name"])
+    skillList.append(selected_skill4["name"])
+    skillList.append(selected_skill5["name"])
+    skillList.append(selected_skill6["name"])
+    skillList.append(selected_skill7["name"])
+    skillList.append(selected_skill8["name"])
 elif level >= 17 and level <= 20:
-     skillList.append(selected_skill1["name"])
-     skillList.append(selected_skill2["name"])
-     skillList.append(selected_skill3["name"])
-     skillList.append(selected_skill4["name"])
-     skillList.append(selected_skill5["name"])
-     skillList.append(selected_skill6["name"])
-     skillList.append(selected_skill7["name"])
-     skillList.append(selected_skill8["name"])
-     skillList.append(selected_skill9["name"])
-     skillList.append(selected_skill10["name"])
+    skillList.append(selected_skill1["name"])
+    skillList.append(selected_skill2["name"])
+    skillList.append(selected_skill3["name"])
+    skillList.append(selected_skill4["name"])
+    skillList.append(selected_skill5["name"])
+    skillList.append(selected_skill6["name"])
+    skillList.append(selected_skill7["name"])
+    skillList.append(selected_skill8["name"])
+    skillList.append(selected_skill9["name"])
+    skillList.append(selected_skill10["name"])
 
 skillNames = [name for name in skillList]
-    
+
+def printSkills():
+     for skill in skillNames:
+         print(skill)
+     if len(skillNames) == 0:
+         print("No skills selected")
+     elif skill == "None":
+         print("No skills selected")
+         
+
