@@ -6,6 +6,7 @@ Created on Thu Oct 29 10:50:01 2020
 """
 import requests
 import random
+import getStats
 import birthData
 import getPhobia
 import getInsanity
@@ -46,7 +47,6 @@ print("-------------------------------")
 # Race, Gender, Height, weight and bonuses
 classes = (getClass.selected_class["name"])
 race = (getRace.selected_race["name"])
-age = (random.randint(1, 10))
 male = 0
 female = 0
 gender = random.randint(1, 2)
@@ -57,7 +57,7 @@ weight = (random.randint(140, 250))
 weightadj = int(heightinch*1.2)
 weight = weight + weightadj
 
-# Much better to use metric or numInches
+# Generate a random height and weight
 if height == 4:
     weight = random.randint(125, 175)
 elif height == 5:
@@ -89,117 +89,9 @@ if race == ["halfogre"]:
 if race == ["dwarf"]:
     height = height - 1
 
-# Generate 3d6 stats and add any race/class bonuses
-# Strength
-str_dice_rolls = [random.randint(1, 6) for _ in range(4)]
-dex_dice_rolls = [random.randint(1, 6) for _ in range(4)]
-wis_dice_rolls = [random.randint(1, 6) for _ in range(4)]
-con_dice_rolls = [random.randint(1, 6) for _ in range(4)]
-int_dice_rolls = [random.randint(1, 6) for _ in range(4)]
-cha_dice_rolls = [random.randint(1, 6) for _ in range(4)]
 
-str_dice_rolls.remove(min(str_dice_rolls))
-int_dice_rolls.remove(min(int_dice_rolls))
-strength = sum(str_dice_rolls)
+# If the class is a fighter, barbarian or paladin, then the minimum strength is 12.
 
-
-# strength = (random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6)).remove(min)
-if race == ['dwarf']:
-    strength = strength + 1
-elif race == ['highelf']:
-    strength = strength - 1
-elif race == ['halfogre']:
-    strength = strength + 3
-
-if classes == ["Fighter"]:
-    strength = strength + (random.randint(1, 3))
-elif classes == ["Paladin"]:
-    strength = strength + (random.randint(1, 2))
-
-
-# Intelligence
-intelligence = sum(int_dice_rolls)
-if race == ['halfogre']:
-    intelligence = intelligence - 2
-elif race == ['human']:
-    intelligence = intelligence + 1
-elif race == ['highelf']:
-    intelligence = intelligence + 2
-
-if classes == ["Magician"]:
-    intelligence = intelligence + 3
-
-
-# Wisdom
-wisdom = (random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6))
-if classes == ["Cleric"]:
-    wisdom = wisdom + 3
-
-
-# Dexterity
-dexterity = (random.randint(1, 6)) + \
-    (random.randint(1, 6))+(random.randint(1, 6))
-if race == ['woodelf']:
-    dexterity = dexterity + 3
-elif race == ['drowelf']:
-    dexterity = dexterity + 2
-elif race == ["highelf"]:
-    dexterity = dexterity + 2
-elif race == ['halfogre']:
-    dexterity = dexterity - 2
-
-if classes == ["Thief"]:
-    dexterity = dexterity + 3
-elif classes == ["ranger"]:
-    dexterity = dexterity + 3
-
-# Constitution
-constitution = (random.randint(1, 6)) + \
-    (random.randint(1, 6))+(random.randint(1, 6))
-if race == ['dwarf']:
-    constitution = constitution + 1
-elif race == ['halfogre']:
-    constitution = constitution + 2
-
-if classes == ["Fighter"]:
-    constitution = constitution + (random.randint(1, 2))
-elif classes == ["Paladin"]:
-    constitution = constitution + (random.randint(1, 3))
-elif classes == ["Cleric"]:
-    constitution = constitution + (random.randint(0, 2))
-
-# Charisma
-charisma = (random.randint(1, 6))+(random.randint(1, 6))+(random.randint(1, 6))
-if race == ['dwarf']:
-    charisma = charisma - 1
-elif race == ['halfogre']:
-    charisma = charisma - 2
-elif race == ['drowelf']:
-    charisma = charisma - 1
-
-# Mutations???
-statlist = ["strength", "intelligence", "wisdom",
-            "dexterity", "constitution", "charisma"]
-bonusstat = (random.choices(statlist))
-mutation = (random.randint(-2, 8))
-
-# Age
-if race == ["drowelf"]:
-    age = (random.randint(50, 130))
-elif race == ["woodelf"]:
-    age = (random.randint(75, 180))
-elif race == ["highelf"]:
-    age = (random.randint(100, 250))
-elif race == ["dwarf"]:
-    age = (random.randint(35, 60))
-elif race == ["halfelf"]:
-    age = (random.randint(24, 50))
-elif race == ["halfogre"]:
-    age = (random.randint(12, 19))
-elif race == ["mutant"]:
-    age = (random.randint(16, 25))
-elif race == ["human"]:
-    age = (random.randint(17, 28))
 
 # level and age
 level = random.randint(1, 20)
@@ -241,186 +133,51 @@ print("Speed        ", speed)
 
 # Sanity check.  The following is an array of insanity and phobias.  The program will randomly select one of each and print them out.
 print("-------------------------------")
-# This prints out a random phobia from getPhobia.py
+
+print(getStats.getBonus())
+
+
+
+#Here are the ability scores.  They are randomly generated in getStats.py
+
 
 print("-------------------------------")
 
-# The following code adds a bonus for every 2 points in a stat above 10
-strbonus = 0
-dexbonus = 0
-conbonus = 0
-intbonus = 0
-wisbonus = 0
-chabonus = 0
-
-
-if strength >= 12:
-    strbonus = (strength - 10) / 2
-    strbonus = int(strbonus)
-
-if dexterity >= 12:
-    dexbonus = (dexterity - 10) / 2
-    dexbonus = int(dexbonus)
-
-if constitution >= 12:
-    conbonus = (constitution - 10) / 2
-    conbonus = int(conbonus)
-
-if intelligence >= 12:
-    intbonus = (intelligence - 10) / 2
-    intbonus = int(intbonus)
-
-if wisdom >= 12:
-    wisbonus = (wisdom - 10) / 2
-    wisbonus = int(wisbonus)
-
-if charisma >= 12:
-    chabonus = (charisma - 10) / 2
-    chabonus = int(chabonus)
-
-# The following code subtracts 1 for every 2 points below 11.
-
-if strength < 12:
-    strbonus = (strength - 11) / 2
-    strbonus = int(strbonus)
-
-if dexterity < 12:
-    dexbonus = (dexterity - 11) / 2
-    dexbonus = int(dexbonus)
-
-if constitution < 12:
-    conbonus = (constitution - 11) / 2
-    conbonus = int(conbonus)
-
-if intelligence < 12:
-    intbonus = (intelligence - 11) / 2
-    intbonus = int(intbonus)
-
-if wisdom < 12:
-    wisbonus = (wisdom - 11) / 2
-    wisbonus = int(wisbonus)
-
-if charisma < 12:
-    chabonus = (charisma - 11) / 2
-    chabonus = int(chabonus)
-
-# Bob
-
-# The following code prints the stats and bonuses
-# High Stat bonuses
-if strength >= 16:
-    print("Strength:    ", strength, "(+", strbonus, "Bonus)")
-else:
-    print("Strength:    ", strength)
-
-if intelligence >= 16:
-    print("Intelligence:", intelligence, "(+", intbonus, "Bonus)")
-else:
-    print("Intelligence:", intelligence)
-
-if wisdom >= 16:
-    print("Wisdom:      ", wisdom, "(+", wisbonus, "Bonus)")
-else:
-    print("Wisdom:      ", wisdom)
-
-if dexterity >= 16:
-    print("Dexterity:   ", dexterity, "(+", dexbonus, "Bonus)")
-else:
-    print("Dexterity:   ", dexterity)
-
-if constitution >= 16:
-    print("Constitution:", constitution, "(+", conbonus, "Bonus)")
-else:
-    print("Constitution:", constitution)
-
-if charisma >= 16:
-    print("Charisma:    ", charisma, "(+", chabonus, "Bonus)")
-else:
-    print("Charisma:    ", charisma)
-
-print("-------------------------------")
-
-# Race bonuses print line
-if race == ["highelf"]:
-    print("High-Elf Racial bonuses: Int +2, Dex +2, Str -1")
-elif race == ["woodelf"]:
-    print("Wood-Elf Racial bonuses: Dex +3")
-elif race == ["dwarf"]:
-    print("Dwarf Racial Bonus: Str +2, Con +1, Cha -1, speed - 2d8")
-elif race == ["halfelf"]:
-    print("Half-elf Racial Bonus: Dex +1")
-elif race == ["halfogre"]:
-    print("Half-ogre Racial Bonus: Str +3, Con +2, Dex - 1, Cha -2")
-elif race == ["drowelf"]:
-    print("Drow Racial Bonus: Str +1, Dex +2, Cha -1")
-elif race == ["human"]:
-    print("Human Racial Bonus: Int +1, Plus 5% Exp, 1 Additional Class skill")
-elif race == ["mutant"]:
-    print("Mutant Racial Bonus:", bonusstat, "+", mutation)
-print("-------------------------------")
-
-
-# Weapons
-
-# weapon =(selected_weapon["name"])
-# print("Weapons:      ", weapon)
-
-# spells
-spellone = ["magic missiles", "find object", "minor illusion"]
-spelltwo = ["fireball", "minor levetation", "shocking grasp"]
-
-numspells = level + 1
-knownspellsone = (random.choices(spellone))
-knownspellstwo = (random.choices(spelltwo))
-
-if classes == ["Magician"]:
-    print("Spells:", knownspellsone)
-    print(knownspellstwo)
-
-
+#Phobia and insanity tables
 print("Phobia:      ", getPhobia.phobia)
 print("Insanity:    ", getInsanity.insanity)
-
 print("-------------------------------")
-
 
 # Zodiac and birthdates
 # this prints data from the birthData.py module.
-print("Age:         ", birthData.age)
-print("Zodiac:      ", birthData.zodiacSign)
-print("Birth Year:  ", birthData.birthyear)
+age = birthData.age
+print(birthData.printBirthData())
 print("Background:  ", getBackground.selectedBackground["name"])
 print("-------------------------------")
-# AC, Saving Throws, and THACO
-armor = 4
 
-ac = dexbonus+armor
+# AC, Saving Throws, and THACO
+armor = 11 + getStats.dexterityBonus
+ac = armor
 print("AC:      ", ac)
 
-thaco = 11
-thaco = thaco - (dexbonus + strbonus)
-print("THACO:   ", thaco)
-
+#Saving Throws
 print("-----------------------")
 print("Saving Throws")
-
 savethrow = 11
-savethrow = savethrow - conbonus
-
+savethrow = savethrow
 print(savethrow)
-
 print("-------------------------------")
+
+#Weapon and Off-Hand Weapon
 print("Weapon:          ", selected_weapon["name"])
-
 print("Off-Hand Weapon: ", selected_weapon2["name"])
-
-print("-------------------------------")
 print("-------------------------------")
 print("Spells:", getSpells.printSpells())
 print("-------------------------------")
+print("Skills: ", getSkills.skill_string)
+print("-------------------------------")
 
-print(getSkills.printSkills())
-print("-------------------------------")
 # prints out the equipment from the getEquipment.py module
+print("Equipment: ", getEquipment.equipment_string)
 print("-------------------------------")
-print("Equipment: ", getEquipment.printEquipment())
+print("-------------------------------")

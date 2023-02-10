@@ -6,28 +6,28 @@ response = requests.get(urlSkills)
 data = response.json()
 skill = data["results"]
 
-selected_skill1 = random.choice(skill)
-selected_skill2 = random.choice(skill)
-selected_skill3 = random.choice(skill)
-selected_skill4 = random.choice(skill)
-selected_skill5 = random.choice(skill)
-selected_skill6 = random.choice(skill)
-selected_skill7 = random.choice(skill)
-selected_skill8 = random.choice(skill)
-selected_skill9 = random.choice(skill)
-selected_skill10 = random.choice(skill)
-level = random.randint(1, 20)
-skillList = [""]
-skillList.append(selected_skill1["name"])
-skillList.append(selected_skill2["name"])
-skillList.append(selected_skill3["name"])
-skillList.append(selected_skill4["name"])
-skillList.append(selected_skill5["name"])
-skillNames = [name for name in skillList]
-
-
-def printSkills():
-    for skill in skillNames:
-        print(skill)
+class getSkills:
+    def __init__(self):
+        self.skillList = []
+        self.skill = skill
         
-printSkills()
+    def addSkill(self):
+        selected_skill = random.choice(self.skill)
+        self.skillList.append(selected_skill["name"])
+        
+    def printSkill(self):
+        return [name for name in self.skillList[:10]]
+
+inventory = getSkills()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+inventory.addSkill()
+
+
+skill_string = ", ".join(inventory.printSkill())
