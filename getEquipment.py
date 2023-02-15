@@ -1,5 +1,8 @@
 import requests
 import random
+import getCharacterLevel
+
+level = getCharacterLevel.character_level
 
 urlEquipment = "https://www.dnd5eapi.co/api/equipment"
 response = requests.get(urlEquipment)
@@ -19,15 +22,8 @@ class getEquipment:
         return [name for name in self.equipmentList[:10]]
 
 inventory = getEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
-inventory.addEquipment()
 
+for i in range(level):
+    inventory.addEquipment()
 
 equipment_string = ", ".join(inventory.printEquipment())

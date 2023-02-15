@@ -4,6 +4,8 @@ Created on Thu Oct 29 10:50:01 2020
 
 @author: Owner
 """
+
+#Imports
 import requests
 import random
 import getStats
@@ -17,167 +19,73 @@ import getSkills
 import getEquipment
 import getClass
 import getRace
+import getCharacterLevel
+import getWeapon
+import getArmor
+import getPhysical
+import getArmorClass
+
+# Variables
+classes = (getClass.selected_class["name"])
+race = (getRace.selected_race["name"])
+gender = getPhysical.gender
+weight = getPhysical.weight
+height = getPhysical.height
+heightinch = getPhysical.heightinch
+level = getCharacterLevel.character_level
+eyes = getPhysical.eyes
+hair = getPhysical.hair
+speed = getStats.speed
+age = birthData.age
+bmonth = birthData.bmonth
+bday = birthData.bday
+birth_year = birthData.birthyear
+sign = birthData.zodiacSign
+
+ac = 10
+# armor_class = getArmor.ac
+# ac = armor_class + getStats.dexterityBonus
 
 
-urlWeapons = "https://www.dnd5eapi.co/api/equipment-categories/weapon"
+savethrow = 11
+savethrow = savethrow
 
-response = requests.get(urlWeapons)
-
-if response.status_code == 200:
-    data = response.json()
-    weapons = data["equipment"]
-    selected_weapon = random.choice(weapons)
-
-    selected_weapon2 = random.choice(weapons)
-else:
-    print("Failed to retrieve data")
-
-# If the selected weapons name contains "Weapon" then it will select another weapon.
-if "Weapon" in selected_weapon["name"]:
-    selected_weapon = random.choice(weapons)
-
-if "Weapon" in selected_weapon2["name"]:
-    selected_weapon2 = random.choice(weapons)
-
-
+#Here is where we print out the NPC
 print("-------------------------------")
 print("Dungeons & Dragons Random NPC Generator!")
 print("-------------------------------")
-
-# Race, Gender, Height, weight and bonuses
-classes = (getClass.selected_class["name"])
-race = (getRace.selected_race["name"])
-male = 0
-female = 0
-gender = random.randint(1, 2)
-heightinch = random.randint(1, 3)+random.randint(1, 3) + \
-    random.randint(1, 3)+random.randint(1, 3)-4
-height = 6
-weight = (random.randint(140, 250))
-weightadj = int(heightinch*1.2)
-weight = weight + weightadj
-
-# Generate a random height and weight
-if height == 4:
-    weight = random.randint(125, 175)
-elif height == 5:
-    weight = random.randint(150, 200)
-elif height == 6:
-    weight = random.randint(185, 280)
-elif height == 7:
-    weight = random.randint(250, 400)
-elif height >= 8:
-    weight = random.randint(370, 500)
-
-if height == 4:
-    fweight = random.randint(85, 150)
-elif height == 5:
-    fweight = random.randint(100, 200)
-elif height == 6:
-    fweight = random.randint(140, 240) + random.randint(11, 25)
-elif height == 7:
-    fweight = random.randint(215, 350)
-elif height >= 8:
-    fweight = random.randint(320, 420)
-
-if race == ["halfogre"]:
-    height = int(height * 1.3)
-
-if race == ["halfogre"]:
-    weight = random.randint(220, 450)
-
-if race == ["dwarf"]:
-    height = height - 1
-
-
-# If the class is a fighter, barbarian or paladin, then the minimum strength is 12.
-
-
-# level and age
-level = random.randint(1, 20)
-
-# Start in print out stats
-# Race
-
-# print("Race:        ", selected_race["name"])
 print("Race:        ", getRace.selected_race["name"])
-
-# Classes
 print("Class:       ", getClass.selected_class["name"])
-
-# Discription Level and age, print
-eyecolors = ['Brown  ', 'Hazel  ', 'Blue   ', 'Grey   ',
-             'Green  ', 'Red    ', 'Black  ', 'Rainbow']
-haircolors = ['Brown', 'Blonde', 'Light-Brown',
-              'Grey', 'Green', 'Red', 'Black', 'Rainbow']
-eyes = random.choice(eyecolors)
-hair = random.choice(haircolors)
-speed = 30
-
-if gender == 2:
-    weight = int(weight*.61)
-
-if gender == 2:
-    height = int(height*.9)
-
 print("Alignment:   ", getAlignment.selectedAlignment["name"])
 print("Level:       ", level)
-if gender == 1:
-    print('Gender:       Male')
-else:
-    print('Gender:       Female')
+print("-------------------------------")
+getStats.getBonus()
+print("-------------------------------")
+print('Gender:      ', getPhysical.gender)
+print("Age:         ", age)
 print('Height:      ', height, 'ft', heightinch, 'inches', '  Weight:', weight)
 print('Eye Color:   ', eyes, '        Hair Color:', hair)
 print("Speed        ", speed)
-
-
-# Sanity check.  The following is an array of insanity and phobias.  The program will randomly select one of each and print them out.
 print("-------------------------------")
-
-print(getStats.getBonus())
-
-
-
-#Here are the ability scores.  They are randomly generated in getStats.py
-
-
-print("-------------------------------")
-
-#Phobia and insanity tables
 print("Phobia:      ", getPhobia.phobia)
 print("Insanity:    ", getInsanity.insanity)
+print("Background:   " + getBackground.rand_background)
 print("-------------------------------")
-
-# Zodiac and birthdates
-# this prints data from the birthData.py module.
-age = birthData.age
-print(birthData.printBirthData())
-print("Background:  ", getBackground.selectedBackground["name"])
+print("Birth Day:   ", bmonth, "",bday, ", ", birth_year)
+print("Zodiac:      ", sign)
 print("-------------------------------")
-
-# AC, Saving Throws, and THACO
-armor = 11 + getStats.dexterityBonus
-ac = armor
-print("AC:      ", ac)
-
-#Saving Throws
-print("-----------------------")
-print("Saving Throws")
-savethrow = 11
-savethrow = savethrow
-print(savethrow)
+print("AC:          ", ac)
+print("Armor:       ", getArmorClass.armor_name)
 print("-------------------------------")
-
-#Weapon and Off-Hand Weapon
-print("Weapon:          ", selected_weapon["name"])
-print("Off-Hand Weapon: ", selected_weapon2["name"])
+print("Saving Throw:", savethrow)
 print("-------------------------------")
-print("Spells:", getSpells.printSpells())
+print("Weapon:          ", getWeapon.selected_weapon["name"])
+print("Off-Hand Weapon: ", getWeapon.selected_weapon2["name"])
+print("-------------------------------")
+print("Spells:", getSpells.spell_string)
 print("-------------------------------")
 print("Skills: ", getSkills.skill_string)
 print("-------------------------------")
-
-# prints out the equipment from the getEquipment.py module
 print("Equipment: ", getEquipment.equipment_string)
 print("-------------------------------")
 print("-------------------------------")

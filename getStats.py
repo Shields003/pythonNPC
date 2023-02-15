@@ -6,6 +6,9 @@ import getClass
 classes = getClass.selected_class["name"]
 race = getRace.selected_race["name"]
 
+#Speed
+speed = 30
+
 # Strength
 str_dice_rolls = [random.randint(1, 6) for _ in range(4)]
 dex_dice_rolls = [random.randint(1, 6) for _ in range(4)]
@@ -109,21 +112,47 @@ def getBonus():
         intelligenceBonus = (intelligence - 10) // 2
         wisdomBonus = (wisdom - 10) // 2
         charismaBonus = (charisma - 10) // 2
-        if strengthBonus > 0 or strengthBonus < 0:
-            print("Strength:     ", strength, "(+ ", strengthBonus, ")")
-        if dexterityBonus > 0 or dexterityBonus < 0:
-            print("Dexterity:    ", dexterity, "(+ ", dexterityBonus, ")")
-        if constitutionBonus > 0 or constitutionBonus < 0:
+        if strengthBonus > 0:
+            print("Strength:     ", strength, "(+", strengthBonus, ")")
+        if strengthBonus < 0:
+            print("Strength:     ", strength, " (", strengthBonus, ")")
+        if strengthBonus == 0:
+            print("Strength:     ", strength)
+        if dexterityBonus > 0:
+            print("Dexterity:    ", dexterity, "(+", dexterityBonus, ")")
+        if dexterityBonus < 0:
+                print("Dexterity:    ", dexterity, " (", dexterityBonus, ")")
+        if dexterityBonus == 0:
+            print("Dexterity:    ", dexterity)
+        if constitutionBonus > 0:
             print("Constitution: ", constitution,
-                  "(+ ", constitutionBonus, ")")
-        if intelligenceBonus > 0 or intelligenceBonus < 0:
+                  "(+", constitutionBonus, ")")
+        if constitutionBonus < 0:
+            print("Constitution: ", constitution,
+                  " (", constitutionBonus, ")")
+        if constitutionBonus == 0:
+            print("Constitution: ", constitution)
+        if intelligenceBonus > 0:
             print("Intelligence: ", intelligence,
-                  "(+ ", intelligenceBonus, ")")
-        if wisdomBonus > 0 or wisdomBonus < 0:
-            print("Wisdom:       ", wisdom, "(+ ", wisdomBonus, ")")
-        if charismaBonus > 0 or charismaBonus < 0:
-            print("Charisma:     ", charisma, "(+ ", charismaBonus, ")")
- 
+                  "(+", intelligenceBonus, ")")
+        if intelligenceBonus < 0:
+                print("Intelligence: ", intelligence,
+                      " (", intelligenceBonus, ")")
+        if intelligenceBonus == 0:
+            print("Intelligence: ", intelligence)
+        if wisdomBonus > 0:
+            print("Wisdom:       ", wisdom, "(+", wisdomBonus, ")")
+        if wisdomBonus < 0:
+                print("Wisdom:       ", wisdom, " (", wisdomBonus, ")")   
+        if wisdomBonus == 0:
+            print("Wisdom:       ", wisdom)
+        if charismaBonus > 0:
+            print("Charisma:     ", charisma, "(+", charismaBonus, ")")
+        if charismaBonus < 0:
+             print("Charisma:     ", charisma, " (", charismaBonus, ")")
+        if charismaBonus == 0:
+            print("Charisma:     ", charisma)
+
     else:
         print("Strength:     ", strength)
         print("Dexterity:    ", dexterity)
@@ -131,3 +160,6 @@ def getBonus():
         print("Intelligence: ", intelligence)
         print("Wisdom:       ", wisdom)
         print("Charisma:     ", charisma)
+
+
+# getBonus()

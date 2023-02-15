@@ -47,6 +47,7 @@ birthyear = 0
 bday = 0
 birthyear = 623 - age
 zodiac = random.randint(1, 13)
+zodiacSign = ""
 
 bdate = random.randint(1, 365)
 if bdate >= 1 and bdate <= 20:
@@ -117,15 +118,6 @@ elif zodiac == 12:
     zodiacSign = "Sagittarius"
 elif zodiac == 13:
     zodiacSign = "Capricorn"
-
-
-def BirthData():
-    print("-------------------------------")
-    print("Age: ", age)
-    print("Birth Day: ", bday, ", ", birthyear)
-    print("Zodiac: ", zodiacSign)
-    print("-------------------------------")
-    __all__ = ['BirthData']
 
 
 birthyear = 0
@@ -230,9 +222,9 @@ if zodiacroll==24:
 
 def printBirthData():
     print("-------------------------------")
-    print("Age: ", age)
-    print("Birth Day: ", bmonth, "",bday, ", ", birthyear)
-    print("Zodiac: ", sign)
+    print("Age:         ", age)
+    print("Birth Day:   ", bmonth, "",bday, ", ", birthyear)
+    print("Zodiac:      ", sign)
     print("-------------------------------")
     __all__ = ['printBirthData']
     

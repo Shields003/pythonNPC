@@ -1,7 +1,6 @@
 import requests
 import random
 
-randAlignment = random.randint(0, 8)
 
 urlAlignments = "https://www.dnd5eapi.co/api/alignments"
 

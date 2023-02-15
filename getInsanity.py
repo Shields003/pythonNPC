@@ -2,9 +2,11 @@
 
 import random
 
-randInsanity = random.randint(0, 19)
+randInsanity = random.randint(0, 49)
 
-insanities = ["Schitsaphrenia", "Schizoaffective Disorder", "Schizotypal Personality Disorder", "Delusional Disorder", "Bipolar Disorder", "Depression", "Anxiety", "Obsessive Compulsive Disorder", "Post Traumatic Stress Disorder", "Dissociative Identity Disorder", "Dissociative Amnesia", "Dissociative Fugue", "Dissociative Disorder", "Somatoform Disorder", "Conversion Disorder", "Hypochondriasis", "Body Dysmorphic Disorder", "Factitious Disorder", "Munchausen Syndrome", "Munchausen Syndrome by Proxy"]
+insanities = ["Antisocial Personality Disorder (Psychopathy)", "Borderline Personality Disorder", "Narcissistic Personality Disorder", "Schizophrenia", "Bipolar Disorder", "Major Depressive Disorder", "Obsessive-Compulsive Disorder (OCD)", "Post-Traumatic Stress Disorder (PTSD)", "Generalized Anxiety Disorder (GAD)", "Attention Deficit Hyperactivity Disorder (ADHD)", "Panic Disorder", "Dissociative Identity Disorder (DID)", "Anorexia Nervosa", "Bulimia Nervosa", "Schizoid Personality Disorder", "Paranoid Personality Disorder", "Histrionic Personality Disorder", "Avoidant Personality Disorder", "Dependent Personality Disorder", "Obsessive-Compulsive Personality Disorder (OCPD)", "Depression", "Social Anxiety Disorder", "Agoraphobia", "Specific Phobias", "Substance Use Disorders (Drug Addiction)", "Gambling Addiction", "Internet Addiction", "Pyromania (Fire-Starting)", "Kleptomania (Stealing)", "Trichotillomania (Hair Pulling)", "Dermatillomania (Skin Picking)", "Body Dysmorphic Disorder", "Tourette's Syndrome", "Asperger's Syndrome", "Autism Spectrum Disorder", "Ankylosing Spondylitis", "Fibromyalgia", "Multiple Sclerosis", "Huntington's Disease", "Alzheimer's Disease", "Parkinson's Disease", "Schizophreniform Disorder", "Delusional Disorder", "Psychotic Disorder Not Otherwise Specified (NOS)", "Somatic Symptom Disorder", "Conversion Disorder", "Factitious Disorder", "Munchausen Syndrome", "Munchausen Syndrome by Proxy", "Substance-Induced Psychotic Disorder"]
+
+
 
 insanity = insanities[randInsanity]
 
