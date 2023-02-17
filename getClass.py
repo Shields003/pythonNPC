@@ -12,3 +12,4 @@ if response.status_code == 200:
 #     print(selected_class["name"])
 else:
     print("Failed to retrieve data")
+

@@ -7,58 +7,128 @@ classes = (getClass.selected_class["name"])
 race = (getRace.selected_race["name"])
 male = 0
 female = 0
-gender = random.randint(1, 2)
-heightinch = random.randint(1, 3)+random.randint(1, 3) + \
-    random.randint(1, 3)+random.randint(1, 3)-4
-height = 6
-weight = (random.randint(140, 250))
-weightadj = int(heightinch*1.2)
-weight = weight + weightadj
-
-# Generate a random height and weight
-if height == 4:
-    weight = random.randint(125, 175)
-elif height == 5:
-    weight = random.randint(150, 200)
-elif height == 6:
-    weight = random.randint(185, 280)
-elif height == 7:
-    weight = random.randint(250, 400)
-elif height >= 8:
-    weight = random.randint(370, 500)
-
-if height == 4:
-    fweight = random.randint(85, 150)
-elif height == 5:
-    fweight = random.randint(100, 200)
-elif height == 6:
-    fweight = random.randint(140, 240) + random.randint(11, 25)
-elif height == 7:
-    fweight = random.randint(215, 350)
-elif height >= 8:
-    fweight = random.randint(320, 420)
-
-if race == ["Half-Orc"]:
-    height = int(height * 1.3)
-    weight = random.randint(220, 450)
-elif race == ["Dwarf"]:
-    height = height - 1
-    weight = weight - 20
-elif race == ["Halfling"]:
-    height = height - 2
-    weight = weight - 60
-elif race == ["Gnome"]:
-    height = height - 2
-    weight = weight - 60
-elif race == ["Half-Elf"] or race == ["High-Elf"] or race == ["Wood-Elf"]:
-    height = height - .5
-    weight = weight - 35
-elif gender == 2:
-    weight = int(weight*.61)
-    height = int(height*.82)
-    gender = "Female"
-else:
+gender_roll = random.randint(1, 2)
+if gender_roll == 1:
     gender = "Male"
+else:
+    gender = "Female"
+    
+height = 0
+weight = 0
+
+# Height and Weight Ratios for D&D 5th Edition Races
+if race == "Dragonborn":
+    if gender == "Male":
+        base_height = 60
+        height_modifier = random.randint(2, 24)
+        base_weight = 140
+        weight_modifier = random.randint(1, 110)
+    else:
+        base_height = 61
+        height_modifier = random.randint(2, 8)
+        base_weight = 130
+        weight_modifier = random.randint(2, 6)
+elif race == "Dwarf":
+    if gender == "Male":
+        base_height = 44
+        height_modifier = random.randint(2, 4)
+        base_weight = 115
+        weight_modifier = random.randint(2, 6)
+    else:
+        base_height = 42
+        height_modifier = random.randint(2, 4)
+        base_weight = 90
+        weight_modifier = random.randint(2, 6)
+elif race == "Elf" or race == "High-Elf" or race == "Wood-Elf" or race == "Dark-Elf":
+    if gender == "Male":
+        base_height = 56
+        height_modifier = random.randint(2, 10)
+        base_weight = 110
+        weight_modifier = random.randint(1, 4)
+    else:
+        base_height = 54
+        height_modifier = random.randint(2, 10)
+        base_weight = 90
+        weight_modifier = random.randint(1, 4)
+elif race == "Gnome":
+    if gender == "Male":
+        base_height = 35
+        height_modifier = random.randint(2, 4)
+        base_weight = 35
+        weight_modifier = random.randint(1, 2)
+    else:
+        base_height = 33
+        height_modifier = random.randint(2, 4)
+        base_weight = 40
+        weight_modifier = random.randint(1, 2)
+elif race == "Half-Elf":
+    if gender == "Male":
+        base_height = 57
+        height_modifier = random.randint(2, 8)
+        base_weight = 110
+        weight_modifier = random.randint(1, 4)
+    else:
+        base_height = 53
+        height_modifier = random.randint(2, 8)
+        base_weight = 90
+        weight_modifier = random.randint(1, 4)
+elif race == "Half-Orc":
+    if gender == "Male":
+        base_height = 68
+        height_modifier = random.randint(0, 25)
+        base_weight = 160
+        weight_modifier = random.randint(0, 140)
+    else:
+        base_height = 60
+        height_modifier = random.randint(0, 20)
+        base_weight = 120
+        weight_modifier = random.randint(0, 100)
+elif race == "Halfling":
+    if gender == "Male":
+        base_height = 31
+        height_modifier = random.randint(2, 4)
+        base_weight = 35
+        weight_modifier = random.randint(1, 2)
+    else:
+        base_height = 29
+        height_modifier = random.randint(2, 4)
+        base_weight = 40
+        weight_modifier = random.randint(1, 2)
+elif race == "Human":
+    if gender == "Male":
+        base_height = 60
+        height_modifier = random.randint(0, 20)
+        base_weight = 140
+        weight_modifier = random.randint(0, 100)
+    else:
+        base_height = 62
+        height_modifier = random.randint(0, 14)
+        base_weight = 90
+        weight_modifier = random.randint(0, 100)
+elif race == "Tiefling":
+    if gender == "Male":
+        base_height = 67
+        height_modifier = random.randint(2, 8)
+        base_weight = 140
+        weight_modifier = random.randint(2, 6)
+    else:
+        base_height = 62
+        height = random.randint(2, 8)
+        base_weight = 90
+        weight_modifier = random.randint(2, 6)
+
+
+height = base_height + height_modifier
+weight = base_weight + weight_modifier
+
+# Take input from the user
+inches = height
+
+# Convert inches to feet and inches
+feet = inches // 12
+inches = inches % 12
+
+# Print the result
 
 
 eyecolors = ['Amber', 'Blue', 'Brown',
@@ -67,3 +137,7 @@ haircolors = ["Black", "Blonde", "Brown", "Red", "White", "Gray", "Silver", "Gol
               "Cyan", "Teal", "Maroon", "Mauve", "Taupe", "Beige", "Tan", "Bistre", "Burgundy", "Charcoal", "Chestnut", "Copper", "Crimson", "Fuchsia", "Golden", "Ivory", "Lavender", "Lemon", "Lilac"]
 eyes = random.choice(eyecolors)
 hair = random.choice(haircolors)
+
+
+# print(height, ", ", weight)
+# print(base_height, ", ", height_modifier, ", ", base_weight, ", ", weight_modifier)

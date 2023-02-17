@@ -1,29 +1,44 @@
 import random
 import requests
 
-url_armor = "https://www.dnd5eapi.co/api/equipment-categories/armor"
-
-response = requests.get(url_armor)
+response = requests.get(
+    "https://www.dnd5eapi.co/api/equipment-categories/armor")
 
 if response.status_code == 200:
-    data = response.json()
-    armor = data["equipment"]
-    selected_armor= random.choice(armor)
+    armor_list = response.json()["equipment"]
+    random_armor = random.choice(armor_list)
+    armor_name = random_armor["name"]
 else:
     print("Failed to retrieve data")
-    
-# Get the armor class of the selected armor
-# url_armor_class = ["https://www.dnd5eapi.co/api/equipment-categories/", selected_armor, "/", "armor-class", "/"]
-# response2 = requests.get(url_armor_class)
 
-# if response2.status_code == 200:
-#     data = response2.json()
-#     armor_class = data["armor_class"]
+ac = 0
 
-# if response.status_code == 200:
-#     data = response.json()
-#     armor_class = data["equipment"]
-   
-# ac = armor_class["armor_class"]
+if armor_name == "Padded":
+    ac = 11
+elif armor_name == "Leather":
+    ac = 11
+elif armor_name == "Studded Leather":
+     ac = 12
+elif armor_name == "Hide":
+     ac = 12
+elif armor_name == "Chain Shirt":
+     ac = 13
+elif armor_name == "Scale Mail":
+     ac = 14
+elif armor_name == "Breastplate":
+     ac = 14
+elif armor_name == "Half Plate":
+     ac = 15
+elif armor_name == "Ring Mail":
+     ac = 14
+elif armor_name == "Chain Mail":
+     ac = 16
+elif armor_name == "Splint":
+     ac = 17
+elif armor_name == "Plate":
+     ac = 18
+else:
+    ac = 10
 
-# ac = selected_armor["armor_class"]
+# print(random_armor["index"])
+# print(random_armor["name"])

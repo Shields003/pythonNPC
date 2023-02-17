@@ -5,7 +5,7 @@ Created on Thu Oct 29 10:50:01 2020
 @author: Owner
 """
 
-#Imports
+# Imports
 import requests
 import random
 import getStats
@@ -23,7 +23,10 @@ import getCharacterLevel
 import getWeapon
 import getArmor
 import getPhysical
-import getArmorClass
+import getFear
+import getProficiencies
+
+
 
 # Variables
 classes = (getClass.selected_class["name"])
@@ -31,7 +34,8 @@ race = (getRace.selected_race["name"])
 gender = getPhysical.gender
 weight = getPhysical.weight
 height = getPhysical.height
-heightinch = getPhysical.heightinch
+feet = getPhysical.feet
+inches = getPhysical.inches
 level = getCharacterLevel.character_level
 eyes = getPhysical.eyes
 hair = getPhysical.hair
@@ -41,8 +45,9 @@ bmonth = birthData.bmonth
 bday = birthData.bday
 birth_year = birthData.birthyear
 sign = birthData.zodiacSign
-
+fear = (getFear.get_type + " " + getFear.focus)
 ac = 10
+proficiencies = getProficiencies.proficiency_string
 # armor_class = getArmor.ac
 # ac = armor_class + getStats.dexterityBonus
 
@@ -50,8 +55,11 @@ ac = 10
 savethrow = 11
 savethrow = savethrow
 
-#Here is where we print out the NPC
+# Here is where we print out the NPC
 print("-------------------------------")
+print("-------------------------------")
+print(proficiencies)
+
 print("Dungeons & Dragons Random NPC Generator!")
 print("-------------------------------")
 print("Race:        ", getRace.selected_race["name"])
@@ -63,19 +71,21 @@ getStats.getBonus()
 print("-------------------------------")
 print('Gender:      ', getPhysical.gender)
 print("Age:         ", age)
-print('Height:      ', height, 'ft', heightinch, 'inches', '  Weight:', weight)
-print('Eye Color:   ', eyes, '        Hair Color:', hair)
+print("Weight:      ", weight, "lbs")
+print(f"Height:       {feet} feet {inches} inches")
+print('Eye Color:   ', eyes, '  Hair Color:', hair)
 print("Speed        ", speed)
 print("-------------------------------")
 print("Phobia:      ", getPhobia.phobia)
 print("Insanity:    ", getInsanity.insanity)
 print("Background:   " + getBackground.rand_background)
+print("Other:       ", fear)
 print("-------------------------------")
-print("Birth Day:   ", bmonth, "",bday, ", ", birth_year)
+print("Birth Day:   ", bmonth, "", bday, ", ", birth_year)
 print("Zodiac:      ", sign)
 print("-------------------------------")
-print("AC:          ", ac)
-print("Armor:       ", getArmorClass.armor_name)
+print("AC:          ", getArmor.ac)
+print("Armor:       ", getArmor.armor_name)
 print("-------------------------------")
 print("Saving Throw:", savethrow)
 print("-------------------------------")
@@ -83,6 +93,8 @@ print("Weapon:          ", getWeapon.selected_weapon["name"])
 print("Off-Hand Weapon: ", getWeapon.selected_weapon2["name"])
 print("-------------------------------")
 print("Spells:", getSpells.spell_string)
+print("-------------------------------")
+print("Proficiencies: ", proficiencies)
 print("-------------------------------")
 print("Skills: ", getSkills.skill_string)
 print("-------------------------------")
