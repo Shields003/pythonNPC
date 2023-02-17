@@ -113,7 +113,7 @@ elif race == "Tiefling":
         weight_modifier = random.randint(2, 6)
     else:
         base_height = 62
-        height = random.randint(2, 8)
+        height_modifier = random.randint(2, 8)
         base_weight = 90
         weight_modifier = random.randint(2, 6)
 

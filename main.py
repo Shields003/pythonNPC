@@ -58,8 +58,6 @@ savethrow = savethrow
 # Here is where we print out the NPC
 print("-------------------------------")
 print("-------------------------------")
-print(proficiencies)
-
 print("Dungeons & Dragons Random NPC Generator!")
 print("-------------------------------")
 print("Race:        ", getRace.selected_race["name"])
