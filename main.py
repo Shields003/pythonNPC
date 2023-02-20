@@ -47,6 +47,7 @@ zodiac = birthData.zodiac
 fear = (getFear.get_type + " " + getFear.focus)
 ac = 10
 proficiencies = getProficiencies.proficiency_string
+race = getRace.selected_race["name"]
 # armor_class = getArmor.ac
 # ac = armor_class + getStats.dexterityBonus
 
