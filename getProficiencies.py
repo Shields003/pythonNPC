@@ -17,16 +17,14 @@ if response.status_code == 200:
         proficiency_list.append(proficiency["name"])
 else:
     print("Failed to retrieve data")
-    
-item = "saving throw"
 
 for item in proficiency_list[:]:
-    if "Saving Throw" in proficiency_list:
+    if item.startswith("Saving"):
         proficiency_list.remove(item)
         saving_throw_list.append(item)
 
 proficiency_string = ", ".join(proficiency_list)
 saving_throw_string = ", ".join(saving_throw_list)
 
-# print("Proficiencies: ", proficiency_string)
-# print("Saving Throws: ", saving_throw_string)
+print(saving_throw_list)
+print(proficiency_list)

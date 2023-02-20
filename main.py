@@ -25,8 +25,7 @@ import getArmor
 import getPhysical
 import getFear
 import getProficiencies
-
-
+import getPokemon
 
 # Variables
 classes = (getClass.selected_class["name"])
@@ -44,13 +43,12 @@ age = birthData.age
 bmonth = birthData.bmonth
 bday = birthData.bday
 birth_year = birthData.birthyear
-sign = birthData.zodiacSign
+zodiac = birthData.zodiac
 fear = (getFear.get_type + " " + getFear.focus)
 ac = 10
 proficiencies = getProficiencies.proficiency_string
 # armor_class = getArmor.ac
 # ac = armor_class + getStats.dexterityBonus
-
 
 savethrow = 11
 savethrow = savethrow
@@ -69,6 +67,8 @@ getStats.getBonus()
 print("-------------------------------")
 print('Gender:      ', getPhysical.gender)
 print("Age:         ", age)
+print("Birth Day:   ", bmonth, "", bday, ", ", birth_year)
+print("Zodiac:      ", zodiac)
 print("Weight:      ", weight, "lbs")
 print(f"Height:       {feet} feet {inches} inches")
 print('Eye Color:   ', eyes, '  Hair Color:', hair)
@@ -76,26 +76,27 @@ print("Speed        ", speed)
 print("-------------------------------")
 print("Phobia:      ", getPhobia.phobia)
 print("Insanity:    ", getInsanity.insanity)
-print("Background:   " + getBackground.rand_background)
+print("Background:   " + getBackground.background)
 print("Other:       ", fear)
-print("-------------------------------")
-print("Birth Day:   ", bmonth, "", bday, ", ", birth_year)
-print("Zodiac:      ", sign)
+print("Favorite Pokemon: ", getPokemon.capitalized_pokemon)
 print("-------------------------------")
 print("AC:          ", getArmor.ac)
 print("Armor:       ", getArmor.armor_name)
 print("-------------------------------")
-print("Saving Throw:", savethrow)
+print("Saving Throw:", getProficiencies.saving_throw_list)
 print("-------------------------------")
 print("Weapon:          ", getWeapon.selected_weapon["name"])
 print("Off-Hand Weapon: ", getWeapon.selected_weapon2["name"])
 print("-------------------------------")
 print("Spells:", getSpells.spell_string)
 print("-------------------------------")
-print("Proficiencies: ", proficiencies)
+print("Proficiencies: ", getProficiencies.proficiency_list)
 print("-------------------------------")
 print("Skills: ", getSkills.skill_string)
 print("-------------------------------")
 print("Equipment: ", getEquipment.equipment_string)
 print("-------------------------------")
+print(getBackground.paragraph_one)
+print("")
+print(getBackground.paragraph_two)
 print("-------------------------------")
