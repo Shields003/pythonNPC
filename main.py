@@ -26,6 +26,8 @@ import getPhysical
 import getFear
 import getProficiencies
 import getPokemon
+import getSkillProf
+
 
 # Variables
 classes = (getClass.selected_class["name"])
@@ -84,16 +86,16 @@ print("-------------------------------")
 print("AC:          ", getArmor.ac)
 print("Armor:       ", getArmor.armor_name)
 print("-------------------------------")
-print("Saving Throw:", getProficiencies.saving_throw_list)
+# print("Saving Throw:", getProficiencies.saving_throw_list)
 print("-------------------------------")
 print("Weapon:          ", getWeapon.selected_weapon["name"])
 print("Off-Hand Weapon: ", getWeapon.selected_weapon2["name"])
 print("-------------------------------")
 print("Spells:", getSpells.spell_string)
 print("-------------------------------")
-print("Proficiencies: ", getProficiencies.proficiency_list)
+self = getSkillProf.DNDCharacter()
+self.print_proficiencies()
 print("-------------------------------")
-print("Skills: ", getSkills.skill_string)
 print("-------------------------------")
 print("Equipment: ", getEquipment.equipment_string)
 print("-------------------------------")
