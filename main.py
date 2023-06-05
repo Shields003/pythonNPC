@@ -27,6 +27,7 @@ import getFear
 import getProficiencies
 import getPokemon
 import getSkillProf
+import getName
 
 from getBackground import generate_backstory
 
@@ -34,6 +35,7 @@ from getBackground import generate_backstory
 my_backstory = generate_backstory()
 
 # Variables
+name = getName.name
 classes = (getClass.selected_class["name"])
 gender = getPhysical.gender
 weight = getPhysical.weight
@@ -89,6 +91,7 @@ print("-------------------------------")
 print("-------------------------------")
 print("Dungeons & Dragons Random NPC Generator!")
 print("-------------------------------")
+print("Name:        ", name)
 print("Race:        ", race)
 print("Class:       ", getClass.selected_class["name"])
 print("Alignment:   ", getAlignment.selectedAlignment["name"])
@@ -135,6 +138,7 @@ if charisma_bonus < 0:
         print("Charisma:     ", charisma, " (", charisma_bonus, ")")
 if charisma_bonus == 0:
         print("Charisma:     ", charisma)
+        
 
 print("-------------------------------")
 print('Gender:      ', getPhysical.gender)

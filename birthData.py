@@ -137,9 +137,6 @@ elif julian_bday <= 365:
             zodiac = "Capricorn"
 # Generate a random birth month and day
 
-
-
-
 def printBirthData():
     print("-------------------------------")
     print("Age:         ", age)

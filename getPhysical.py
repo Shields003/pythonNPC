@@ -9,6 +9,7 @@ race = (getRace.selected_race["name"])
 male = 0
 female = 0
 gender_roll = random.randint(1, 2)
+gender = "Male"
 if gender_roll == 1:
     gender = "Male"
 else:
