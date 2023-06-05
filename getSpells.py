@@ -4,15 +4,15 @@ import getCharacterLevel
 
 # If the class is a spellcaster, this will randomly select a spell from the D&D 5e API.  The number of spells depends on the level of the spellcaster.
 
-level = getCharacterLevel.character_level
+spell_level = getCharacterLevel.character_level
 
-if level < 4:
+if spell_level < 4:
     spellLevel = 1
-elif level >= 5 and level <= 8:
+elif spell_level >= 5 and spell_level <= 8:
     spellLevel = 2
-elif level >= 9 and level <= 12:
+elif spell_level >= 9 and spell_level <= 12:
     spellLevel = 3
-elif level >= 13 and level <= 16:
+elif spell_level >= 13 and spell_level <= 16:
     spellLevel = 4
 else:
     spellLevel = 5
@@ -28,39 +28,39 @@ selected_spells4 = random.choice(spells)
 selected_spells5 = random.choice(spells)
 
 
-class getSpells:
+class get_spells:
     def __init__(self):
-        self.spellBook = []
+        self.spell_book = []
 
-    def addSpell(self):
-        if level >= 1 and level <= 4:
-            self.spellBook.append(selected_spells1["name"])
-        elif level >= 5 and level <= 8:
-            self.spellBook.append(selected_spells1["name"])
-            self.spellBook.append(selected_spells2["name"])
-        elif level >= 9 and level <= 12:
-            self.spellBook.append(selected_spells1["name"])
-            self.spellBook.append(selected_spells2["name"])
-            self.spellBook.append(selected_spells3["name"])
-        elif level >= 13 and level <= 16:
-            self.spellBook.append(selected_spells1["name"])
-            self.spellBook.append(selected_spells2["name"])
-            self.spellBook.append(selected_spells3["name"])
-            self.spellBook.append(selected_spells4["name"])
-        elif level >= 17 and level <= 20:
-            self.spellBook.append(selected_spells1["name"])
-            self.spellBook.append(selected_spells2["name"])
-            self.spellBook.append(selected_spells3["name"])
-            self.spellBook.append(selected_spells4["name"])
-            self.spellBook.append(selected_spells5["name"])
+    def add_spell(self):
+        if spell_level >= 1 and spell_level <= 4:
+            self.spell_book.append(selected_spells1["name"])
+        elif spell_level >= 5 and spell_level <= 8:
+            self.spell_book.append(selected_spells1["name"])
+            self.spell_book.append(selected_spells2["name"])
+        elif spell_level >= 9 and spell_level <= 12:
+            self.spell_book.append(selected_spells1["name"])
+            self.spell_book.append(selected_spells2["name"])
+            self.spell_book.append(selected_spells3["name"])
+        elif spell_level >= 13 and spell_level <= 16:
+            self.spell_book.append(selected_spells1["name"])
+            self.spell_book.append(selected_spells2["name"])
+            self.spell_book.append(selected_spells3["name"])
+            self.spell_book.append(selected_spells4["name"])
+        elif spell_level >= 17 and spell_level <= 20:
+            self.spell_book.append(selected_spells1["name"])
+            self.spell_book.append(selected_spells2["name"])
+            self.spell_book.append(selected_spells3["name"])
+            self.spell_book.append(selected_spells4["name"])
+            self.spell_book.append(selected_spells5["name"])
 
-    def printSpell(self):
-        return [name for name in self.spellBook[:spellLevel]]
+    def print_spell(self):
+        return [name for name in self.spell_book[:spell_level]]
 
 
-inventory = getSpells()
+inventory = get_spells()
 
 for i in range(getCharacterLevel.character_level):
-    inventory.addSpell()
+    inventory.add_spell()
 
-spell_string = ", ".join(inventory.printSpell())
+spell_string = ", ".join(inventory.print_spell())

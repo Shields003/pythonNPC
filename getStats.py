@@ -1,12 +1,21 @@
 import requests
 import random
-import getRace
-import getClass
 
-classes = getClass.selected_class["name"]
-race = getRace.selected_race["name"]
+try:
+    import getRace
+    import getClass
+except ImportError as e:
+    print(f"Error importing module: {e}")
+    exit(1)
 
-#Speed
+try:
+    classes = getClass.selected_class["name"]
+    race = getRace.selected_race["name"]
+except KeyError as e:
+    print(f"Error accessing class or race attribute: {e}")
+    exit(1)
+
+# Speed
 speed = 30
 
 # Strength
@@ -17,149 +26,70 @@ con_dice_rolls = [random.randint(1, 6) for _ in range(4)]
 int_dice_rolls = [random.randint(1, 6) for _ in range(4)]
 cha_dice_rolls = [random.randint(1, 6) for _ in range(4)]
 
-str_dice_rolls.remove(min(str_dice_rolls))
-int_dice_rolls.remove(min(int_dice_rolls))
-wis_dice_rolls.remove(min(wis_dice_rolls))
-con_dice_rolls.remove(min(con_dice_rolls))
-dex_dice_rolls.remove(min(dex_dice_rolls))
-cha_dice_rolls.remove(min(cha_dice_rolls))
+dice_rolls = {
+    "strength": str_dice_rolls,
+    "dexterity": dex_dice_rolls,
+    "wisdom": wis_dice_rolls,
+    "constitution": con_dice_rolls,
+    "intelligence": int_dice_rolls,
+    "charisma": cha_dice_rolls,
+}
 
-strength = sum(str_dice_rolls)
-dexterity = sum(dex_dice_rolls)
-constitution = sum(con_dice_rolls)
-intelligence = sum(int_dice_rolls)
-wisdom = sum(wis_dice_rolls)
-charisma = sum(cha_dice_rolls)
+# Remove the minimum roll for each attribute
+for attribute, rolls in dice_rolls.items():
+    dice_rolls[attribute].remove(min(rolls))
 
-# print ("Strength:     ", strength)
-# print ("Dexterity:    ", dexterity)
-# print ("Constitution: ", constitution)
-# print ("Intelligence: ", intelligence)
-# print ("Wisdom:       ", wisdom)
-# print ("Charisma:     ", charisma)
+# Sum the dice rolls for each attribute
+attributes = {attribute: sum(rolls) for attribute, rolls in dice_rolls.items()}
 
-# if race == "Dwarf": strength = strength + 1 and constitution = constitution + 2.
+# Define race modifiers
+race_modifiers = {
+    "Dwarf": {"strength": 1, "constitution": 2, "charisma": -1},
+    "Elf": {"dexterity": 2, "intelligence": 1},
+    "High-Elf": {"dexterity": 2, "intelligence": 1},
+    "Wood-Elf": {"dexterity": 2, "intelligence": 1},
+    "Half-Orc": {"strength": 2, "constitution": 1, "intelligence": -1},
+    "Gnome": {"strength": -1, "intelligence": 2, "dexterity": 1},
+    "Half-Elf": {"dexterity": 1, "charisma": 2, "strength": -1},
+    "Halfling": {"intelligence": 1, "wisdom": 2, "strength": -1},
+    "Tiefling": {"constitution": 1, "intelligence": 1, "charisma": 1, "wisdom": -1},
+    "Dragonborn": {"strength": 2, "intelligence": 1, "wisdom": -1},
+}
 
-if race == "Dwarf":
-    strength += 1
-    constitution += 2
-    charisma -= 1
-elif race == "Elf" or race == "High-Elf" or race == "Wood-Elf":
-    dexterity += 2
-    intelligence += 1
-elif race == "Half-Orc":
-    strength += 2
-    constitution += 1
-    intelligence -= 1
-elif race == "Gnome":
-    strength -= 1
-    intelligence += 2
-    dexterity += 1
-elif race == "Half-Elf":
-    dexterity += 1
-    charisma += 2
-    strength -= 1
-elif race == "Halfling":
-    intelligence += 1
-    wisdom += 2
-    strength -= 1
-elif race == "Tiefling":
-    constitution += 1
-    intelligence += 1
-    charisma += 1
-    wisdom -= 1
-if race == "Dragonborn":
-    strength += 2
-    intelligence += 1
-    wisdom -= 1
+# Apply race modifiers
+for attribute, modifier in race_modifiers.get(race, {}).items():
+    attributes[attribute] += modifier
 
+# Define minimum class attributes
+class_minimums = {
+    "Fighter": {"strength": 12},
+    "Barbarian": {"strength": 12},
+    "Paladin": {"strength": 12},
+    "Rogue": {"dexterity": 12},
+    "Monk": {"dexterity": 12},
+    "Ranger": {"dexterity": 12},
+    "Wizard": {"intelligence": 12},
+    "Sorcerer": {"intelligence": 12},
+    "Warlock": {"intelligence": 12},
+    "Cleric": {"wisdom": 12},
+    "Druid": {"wisdom": 12},
+    "Bard": {"charisma": 12},
+}
 
-if classes == "Fighter" or classes == "Barbarian" or classes == "Paladin":
-    if strength < 12:
-        strength = 12
+# Ensure class minimums
+for attribute, minimum in class_minimums.get(classes, {}).items():
+    attributes[attribute] = max(attributes[attribute], minimum)
 
-if classes == "Rogue" or classes == "Monk" or classes == "Ranger":
-    if dexterity < 12:
-        dexterity = 12
+# Clamp attributes to the range 1-20
+for attribute, value in attributes.items():
+    attributes[attribute] = min(max(value, 1), 20)
 
-if classes == "Wizard" or classes == "Sorcerer" or classes == "Warlock":
-    if intelligence < 12:
-        intelligence = 12
+# Stats get plus 1 bonus point for every 2 points above 10
+bonus_points = {attribute: (value - 10) // 2 for attribute, value in attributes.items() if value > 10}
 
-if classes == "Cleric" or classes == "Druid":
-    if wisdom < 12:
-        wisdom = 12
-
-if classes == "Bard":
-    if charisma < 12:
-        charisma = 12
-
-# Stats get plus 1 strenghtBonus point for every 2 points above 10.
-
-strengthBonus = 0
-dexterityBonus = 0
-constitutionBonus = 0
-intelligenceBonus = 0
-wisdomBonus = 0
-charismaBonus = 0
-
-
-def getBonus():
-    if strength or dexterity or constitution or intelligence or wisdom or charisma > 10:
-        strengthBonus = (strength - 10) // 2
-        dexterityBonus = (dexterity - 10) // 2
-        constitutionBonus = (constitution - 10) // 2
-        intelligenceBonus = (intelligence - 10) // 2
-        wisdomBonus = (wisdom - 10) // 2
-        charismaBonus = (charisma - 10) // 2
-        if strengthBonus > 0:
-            print("Strength:     ", strength, "(+", strengthBonus, ")")
-        if strengthBonus < 0:
-            print("Strength:     ", strength, " (", strengthBonus, ")")
-        if strengthBonus == 0:
-            print("Strength:     ", strength)
-        if dexterityBonus > 0:
-            print("Dexterity:    ", dexterity, "(+", dexterityBonus, ")")
-        if dexterityBonus < 0:
-                print("Dexterity:    ", dexterity, " (", dexterityBonus, ")")
-        if dexterityBonus == 0:
-            print("Dexterity:    ", dexterity)
-        if constitutionBonus > 0:
-            print("Constitution: ", constitution,
-                  "(+", constitutionBonus, ")")
-        if constitutionBonus < 0:
-            print("Constitution: ", constitution,
-                  " (", constitutionBonus, ")")
-        if constitutionBonus == 0:
-            print("Constitution: ", constitution)
-        if intelligenceBonus > 0:
-            print("Intelligence: ", intelligence,
-                  "(+", intelligenceBonus, ")")
-        if intelligenceBonus < 0:
-                print("Intelligence: ", intelligence,
-                      " (", intelligenceBonus, ")")
-        if intelligenceBonus == 0:
-            print("Intelligence: ", intelligence)
-        if wisdomBonus > 0:
-            print("Wisdom:       ", wisdom, "(+", wisdomBonus, ")")
-        if wisdomBonus < 0:
-                print("Wisdom:       ", wisdom, " (", wisdomBonus, ")")   
-        if wisdomBonus == 0:
-            print("Wisdom:       ", wisdom)
-        if charismaBonus > 0:
-            print("Charisma:     ", charisma, "(+", charismaBonus, ")")
-        if charismaBonus < 0:
-             print("Charisma:     ", charisma, " (", charismaBonus, ")")
-        if charismaBonus == 0:
-            print("Charisma:     ", charisma)
-
-    else:
-        print("Strength:     ", strength)
-        print("Dexterity:    ", dexterity)
-        print("Constitution: ", constitution)
-        print("Intelligence: ", intelligence)
-        print("Wisdom:       ", wisdom)
-        print("Charisma:     ", charisma)
-
-
-# getBonus()
+strengthBonus = bonus_points.get('strength', 0)
+dexterityBonus = bonus_points.get('dexterity', 0)
+constitutionBonus = bonus_points.get('constitution', 0)
+intelligenceBonus = bonus_points.get('intelligence', 0)
+wisdomBonus = bonus_points.get('wisdom', 0)
+charismaBonus = bonus_points.get('charisma', 0)

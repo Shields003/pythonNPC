@@ -33,7 +33,7 @@ inventory = getSkills()
 for i in range(getCharacterLevel.character_level):
     inventory.addSkill()
 
-getSkills()
+# getSkills()
 
 skill_string = ", ".join(inventory.printSkill())
 saving_throws = inventory.saving_skillList

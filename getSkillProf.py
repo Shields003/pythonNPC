@@ -1,25 +1,30 @@
 import requests
 import json
 from random import choice
+import getClass
+
+dnd_class = getClass.selected_class["name"]
 
 
 class DNDCharacter:
+    dnd_class = getClass.selected_class["name"]
+
     def __init__(self):
-        self.dnd_class = self.get_random_class()
         self.proficiencies = self.get_proficiencies()
 
-    def get_random_class(self):
-        url = "https://www.dnd5eapi.co/api/classes"
-        response = requests.get(url)
-        data = json.loads(response.text)
-        classes = [dnd_class["name"] for dnd_class in data["results"]]
-        return choice(classes)
+    # def get_random_class(self):
+    #     url = "https://www.dnd5eapi.co/api/classes"
+    #     response = requests.get(url)
+    #     data = json.loads(response.text)
+    #     classes = [dnd_class["name"] for dnd_class in data["results"]]
+    #     return choice(classes)
 
     def get_proficiencies(self):
         url = f"https://www.dnd5eapi.co/api/classes/{self.dnd_class.lower()}"
         response = requests.get(url)
         data = json.loads(response.text)
-        proficiencies = [proficiency["name"] for proficiency in data["proficiencies"]]
+        proficiencies = [proficiency["name"]
+                         for proficiency in data["proficiencies"]]
         return proficiencies
 
     def separate_proficiencies(self):
@@ -50,6 +55,8 @@ class DNDCharacter:
         print("Proficiencies:", proficiencies)
 
 
+DNDCharacter().print_proficiencies()
+
 # if __name__ == "__main__":
-    # dnd_char = DNDCharacter()
-    # dnd_char.print_proficiencies()
+# dnd_char = DNDCharacter()
+# dnd_char.print_proficiencies()

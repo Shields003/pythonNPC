@@ -220,7 +220,6 @@ elif focus_category == "Place":
     focus = get_place
 elif focus_category == "Organization":
     focus = get_org
-elif focus_category == "Object":
-    focus = get_item
 else:
-    focus = "None"
+    focus_category == "Object"
+    focus = get_item

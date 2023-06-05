@@ -2,6 +2,7 @@ import random
 import requests
 import getRace
 import getClass
+import numpy as np
 
 classes = (getClass.selected_class["name"])
 race = (getRace.selected_race["name"])
@@ -30,8 +31,8 @@ if race == "Dragonborn":
         weight_modifier = random.randint(2, 6)
 elif race == "Dwarf":
     if gender == "Male":
-        base_height = 44
-        height_modifier = random.randint(2, 4)
+        base_height = 50
+        height_modifier = random.randint(2, 8)
         base_weight = 115
         weight_modifier = random.randint(2, 6)
     else:
@@ -41,12 +42,12 @@ elif race == "Dwarf":
         weight_modifier = random.randint(2, 6)
 elif race == "Elf" or race == "High-Elf" or race == "Wood-Elf" or race == "Dark-Elf":
     if gender == "Male":
-        base_height = 56
+        base_height = 59
         height_modifier = random.randint(2, 10)
         base_weight = 110
         weight_modifier = random.randint(1, 4)
     else:
-        base_height = 54
+        base_height = 55
         height_modifier = random.randint(2, 10)
         base_weight = 90
         weight_modifier = random.randint(1, 4)
@@ -132,7 +133,7 @@ inches = inches % 12
 
 
 eyecolors = ['Amber', 'Blue', 'Brown',
-             'Gray', 'Green', 'Hazel', 'Red', 'Violet']
+             'Gray', 'Green', 'Hazel', 'Red', 'Violet', 'Black']
 haircolors = ["Black", "Blonde", "Brown", "Red", "White", "Gray", "Silver", "Gold", "Green", "Blue", "Purple", "Pink", "Orange", "Yellow", "Copper", "Bronze", "Platinum", "Magenta",
               "Cyan", "Teal", "Maroon", "Mauve", "Taupe", "Beige", "Tan", "Bistre", "Burgundy", "Charcoal", "Chestnut", "Copper", "Crimson", "Fuchsia", "Golden", "Ivory", "Lavender", "Lemon", "Lilac"]
 eyes = random.choice(eyecolors)

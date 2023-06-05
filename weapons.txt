@@ -1,0 +1,2 @@
+Weapon 1: Scimitar
+Weapon 2: Javelin

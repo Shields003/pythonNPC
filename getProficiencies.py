@@ -26,5 +26,5 @@ for item in proficiency_list[:]:
 proficiency_string = ", ".join(proficiency_list)
 saving_throw_string = ", ".join(saving_throw_list)
 
-print(saving_throw_list)
-print(proficiency_list)
+# print(saving_throw_list)
+# print(proficiency_list)
