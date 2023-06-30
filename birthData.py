@@ -2,38 +2,32 @@
 import random
 import requests
 
-import getRace
+from getRace import generate_race
 
 age = 0
 
 
-def getAge():
+def getAge(race):
     # Age
-    if getRace.selected_race == "Dwarf":
+    if race == "Dwarf":
         age = random.randint(50, 350)
-    elif getRace.selected_race == "Elf":
+    elif race == "Elf" or race == "High-Elf" or race == "Wood-Elf" or race == "Dark-Elf":
         age = random.randint(100, 750)
-    elif getRace.selected_race == "High-Elf":
-        age = random.randint(100, 750)
-    elif getRace.selected_race == "Wood-Elf":
-        age = random.randint(100, 750)
-    elif getRace.selected_race == "Dark-Elf":
-        age = random.randint(100, 750)
-    elif getRace.selected_race == "Half-Orc":
+    elif race == "Half-Orc":
         age = random.randint(14, 75)
-    elif getRace.selected_race == "Halfling":
+    elif race == "Halfling":
         age = random.randint(20, 120)
-    elif getRace.selected_race == "Human":
+    elif race == "Human":
         age = random.randint(18, 50)
-    elif getRace.selected_race == "Dragonborn":
+    elif race == "Dragonborn":
         age = random.randint(15, 80)
-    elif getRace.selected_race == "Gnome":
+    elif race == "Gnome":
         age = random.randint(40, 500)
-    elif getRace.selected_race == "Half-Elf":
+    elif race == "Half-Elf":
         age = random.randint(20, 120)
-    elif getRace.selected_race == "Tiefling":
+    elif race == "Tiefling":
         age = random.randint(18, 60)
-    elif getRace.selected_race == "Goliath":
+    elif race == "Goliath":
         age = random.randint(16, 80)
     else:
         age = random.randint(18, 50)
@@ -41,7 +35,8 @@ def getAge():
     return age
 
 
-age = getAge()
+race = generate_race()
+age = getAge(race)
 
 birthyear = 0
 bday = 0
@@ -55,87 +50,88 @@ if julian_bday <= 31:
     bmonth = "January"
     bday = julian_bday
     if bday >= 19:
-            zodiac = "Capricorn"
+        zodiac = "Capricorn"
     else:
-            zodiac = "Aquarius"
+        zodiac = "Aquarius"
 elif julian_bday <= 59:
     bmonth = "February"
     bday = julian_bday - 31
     if bday >= 18:
-            zodiac = "Aquarius"
+        zodiac = "Aquarius"
     else:
-            zodiac = "Pisces"
+        zodiac = "Pisces"
 elif julian_bday <= 90:
     bmonth = "March"
     bday = julian_bday - 59
     if bday >= 20:
-            zodiac = "Pisces"
+        zodiac = "Pisces"
     else:
-            zodiac = "Aries"
+        zodiac = "Aries"
 elif julian_bday <= 120:
     bmonth = "April"
     bday = julian_bday - 90
     if bday >= 19:
-            zodiac = "Aries"
+        zodiac = "Aries"
     else:
-            zodiac = "Taurus"
+        zodiac = "Taurus"
 elif julian_bday <= 151:
     bmonth = "May"
     bday = julian_bday - 120
     if bday >= 20:
-            zodiac = "Taurus"
+        zodiac = "Taurus"
     else:
-            zodiac = "Gemini"
+        zodiac = "Gemini"
 elif julian_bday <= 181:
     bmonth = "June"
     bday = julian_bday - 151
     if bday >= 20:
-            zodiac = "Gemini"
+        zodiac = "Gemini"
     else:
-            zodiac = "Cancer"
+        zodiac = "Cancer"
 elif julian_bday <= 212:
     bmonth = "July"
     bday = julian_bday - 181
     if bday >= 22:
-            zodiac = "Cancer"
+        zodiac = "Cancer"
     else:
         zodiac = "Leo"
 elif julian_bday <= 243:
     bmonth = "August"
     bday = julian_bday - 212
     if bday >= 22:
-            zodiac = "Leo"
+        zodiac = "Leo"
     else:
-            zodiac = "Virgo"
+        zodiac = "Virgo"
 elif julian_bday <= 273:
     bmonth = "September"
     bday = julian_bday - 243
     if bday >= 22:
-            zodiac = "Virgo"
+        zodiac = "Virgo"
     else:
         zodiac = "Libra"
 elif julian_bday <= 304:
     bmonth = "October"
     bday = julian_bday - 273
     if bday >= 22:
-            zodiac = "Libra"
+        zodiac = "Libra"
     else:
-            zodiac = "Scorpio"
+        zodiac = "Scorpio"
 elif julian_bday <= 334:
     bmonth = "November"
     bday = julian_bday - 304
     if bday >= 21:
-            zodiac = "Scorpio"
+        zodiac = "Scorpio"
     else:
-            zodiac = "Sagittarius"
+        zodiac = "Sagittarius"
 elif julian_bday <= 365:
     bmonth = "December"
     bday = julian_bday - 334
     if bday >= 21:
-            zodiac = "Sagittarius"
+        zodiac = "Sagittarius"
     else:
-            zodiac = "Capricorn"
+        zodiac = "Capricorn"
 # Generate a random birth month and day
+
 
 def printBirthData():
     print("-------------------------------")

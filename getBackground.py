@@ -1,20 +1,17 @@
 import requests
 import random
-import getRace
-import getClass
-import getWeapon
-import autopep8
-
-# assuming getWeapon.py is the name of your file containing the Weapon class
+from getRace import generate_race
+from getClass import generate_class
 from getWeapon import Weapon
 
+# assuming getWeapon.py is the name of your file containing the Weapon class
 weapon = Weapon()
 # You need to call this function to populate the selected_weapon
 weapon.get_weapon_data()
 
 # equipment = weapon.selected_weapon["name"]
-classes = [getClass.selected_class["name"]]
-races = [getRace.selected_race["name"]]
+classes = [generate_class()]
+races = [generate_race()]
 name = "Nunya"
 equipment = weapon.selected_weapon["name"],
 
@@ -23,6 +20,9 @@ get_backgrounds = ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero
                    "Sailor", "Soldier", "Urchin"]
 
 background = random.choice(get_backgrounds)
+
+# Rest of your code...
+
 
 
 def generate_random(choices):
